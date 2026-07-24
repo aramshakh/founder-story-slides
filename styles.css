@@ -256,6 +256,71 @@ h2 {
   line-height: 1.45;
 }
 
+.logo-row {
+  margin: 24px 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.google-chip {
+  color: #8ab4ff;
+}
+
+.adidas-chip {
+  color: #f3f7fb;
+  text-transform: lowercase;
+}
+
+.draper-chip {
+  color: #9fd0ff;
+}
+
+.compact-cards {
+  grid-template-columns: 1fr 1fr;
+}
+
+.stats-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  display: grid;
+  gap: 8px;
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+
+.stat-card strong {
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1;
+  color: #ffd9c8;
+}
+
+.stat-card span {
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.35;
+  color: #d7e1ec;
+}
+
 .stack-cards,
 .mini-grid,
 .timeline-grid,
@@ -530,6 +595,11 @@ h2 {
   .portrait-card img,
   .landscape-card img {
     aspect-ratio: 4 / 3;
+  }
+
+  .compact-cards,
+  .stats-grid {
+    grid-template-columns: 1fr;
   }
 
   h2,
