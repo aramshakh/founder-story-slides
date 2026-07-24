@@ -1,59 +1,59 @@
-# Content notes
+# Content notes — blunt student version
 
-## Core framing
+## The spine
 
-This deck works best if the story is:
+This version should feel less like a conference talk and more like someone telling the truth after getting punched in the face by reality.
 
-1. **How I naturally think**
-2. **Why that helped**
-3. **Why that eventually broke**
-4. **What changed in my operating model**
-5. **Why I’m building Empy**
+Order:
+1. I had drive
+2. Drive is not the same as a system
+3. That eventually breaks
+4. I got interested in architecture, not motivation hacks
+5. That's why I'm building Empy
 
 ## Speaker notes by slide
 
 ### 1. Title
-"This is basically the story of how I went from founder intensity to founder systems."
+"I used to think if I just pushed hard enough, I could brute-force everything. That works for a while. Then it doesn't."
 
 ### 2. About me
-"I’m not interested in AI as a trick. I care about systems that actually reduce founder load."
+"The problem wasn't that I needed to become more motivated. The problem was that too much of the company lived inside my head."
 
-### 3. How I’m wired
-"Even early on, I was less obsessed with gadgets and more obsessed with how things behave underneath."
+### 3. How I'm wired
+"I've always been interested in hidden structure. Why some people compound. Why some teams stay chaotic. Why some work gets easier with time and some work gets harder."
 
 ### 4. What shaped me
-"Gaming taught me to look for leverage, timing, and hidden structure. That pattern never left."
+"Games taught me to look for the meta. Most people play the visible game. The leverage is usually somewhere deeper."
 
 ### 5. First founder mode
-"A lot of founders start here: speed, instinct, energy. It feels strong, but it doesn’t scale."
+"A lot of founders are strong in the same broken way: high energy, high pain tolerance, terrible architecture."
 
 ### 6. Turning point
-"The bottleneck was no longer effort. It was fragmentation: too much context, too many moving parts, too much in my head."
+"I realized I wasn't underpowered. I was badly organized. Those are very different problems."
 
 ### 7. What changed
-"The unlock was treating execution like a system design problem, not a motivation problem."
+"I stopped treating execution problems like a character flaw. I started treating them like a systems problem."
 
 ### 8. How I build now
-"Now I try to build loops: spec, execution, review, iteration. Less chaos, more compound output."
+"I want systems that still work when I'm tired, distracted, sick, or hit with five things at once. Otherwise it's not a real system."
 
-### 9. Where I’m going
-"That’s why I care about AI as execution infrastructure, not novelty."
+### 9. Where I'm going
+"Most AI right now is like a clever intern with amnesia. Useful, but not enough. I care about systems that remember."
 
 ### 10. What is a startup
-"A startup is not just a small business. It is a search process under uncertainty."
+"A startup is not 'working on something cool.' It's searching for something that might work at scale before you run out of time or money."
 
 ### 11. Two ways to build
-"Neither path is morally better. They are just different games with different constraints."
+"There's nothing inferior about building a normal business. The mistake is pretending you're playing one game while secretly wanting the other."
 
 ### 12. Questions
-"If you want to build, the first step is usually not permission — it’s honesty about what you actually want."
+"The important question is usually not 'can I do it?' It's 'do I want this enough to keep going when it stops feeling exciting?'"
 
-## Optional stronger lines
+## Extra lines worth stealing
 
-You can swap these in if you want sharper phrasing:
-
-- "I stopped treating execution problems like motivation problems."
-- "The founder bottleneck is often not effort. It’s architecture."
-- "AI gets interesting when it compounds context, not when it spits out one good answer."
-- "If the system depends on your memory, you are still the bottleneck."
-- "Intensity can start a company. Systems are what let it keep moving."
+- "Intensity is a real advantage. It's just not a complete operating system."
+- "If your company depends on your memory, you are still the bottleneck."
+- "A lot of fake productivity is just chaos with good branding."
+- "You do not rise to the level of your ambition. You fall to the level of your systems."
+- "Most people don't need more advice. They need a more honest answer."
+- "The startup fantasy is glamorous. The actual work is repetitive, humiliating, and oddly addictive."
