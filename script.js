@@ -17,7 +17,7 @@ function updateDeck(index) {
   const currentNum = String(current + 1).padStart(2, '0');
   const totalNum = String(slides.length).padStart(2, '0');
   slideCounter.textContent = `${currentNum} / ${totalNum}`;
-  progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+  progressBar.style.transform = `scaleX(${(current + 1) / slides.length})`;
 
   prevBtn.disabled = current === 0;
   nextBtn.disabled = current === slides.length - 1;
