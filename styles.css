@@ -220,6 +220,42 @@ h2 {
   gap: 28px;
 }
 
+.photo-stack {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.photo-card {
+  margin: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.portrait-card img {
+  aspect-ratio: 4 / 5;
+}
+
+.landscape-card img {
+  aspect-ratio: 16 / 10;
+}
+
+.photo-card figcaption {
+  padding: 14px 18px 18px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
 .stack-cards,
 .mini-grid,
 .timeline-grid,
@@ -491,6 +527,11 @@ h2 {
     width: min(100%, 360px);
   }
 
+  .portrait-card img,
+  .landscape-card img {
+    aspect-ratio: 4 / 3;
+  }
+
   h2,
   .hero-copy h1 {
     max-width: none;
@@ -553,5 +594,9 @@ h2 {
   .outro-card {
     min-width: 0;
     width: 100%;
+  }
+
+  .photo-card figcaption {
+    font-size: 14px;
   }
 }
