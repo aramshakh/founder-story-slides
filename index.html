@@ -516,6 +516,7 @@
       <a href="#noticing" data-slide="2">What I kept noticing</a>
       <a href="#shaped" data-slide="3">What shaped me</a>
       <a href="#founder-mode" data-slide="4">Founder mode</a>
+      <a href="#venture-vs-normal" data-slide="5">Venture vs normal</a>
     </nav>
     <div class="topbar-meta">
       <span>Founder deck</span>
@@ -708,7 +709,51 @@
               </figure>
             </div>
           </div>
-          <div class="slide-number">06 / 06</div>
+          <div class="slide-number">06 / 07</div>
+        </article>
+      </section>
+      <section class="slide-wrap" id="venture-vs-normal">
+        <article class="slide" aria-labelledby="venture-title">
+          <div class="cover"></div>
+          <div style="position:relative; z-index:1; display:flex; flex-direction:column; height:100%; gap:14px;">
+            <div>
+              <div class="eyebrow">Venture vs Normal Business</div>
+              <h2 id="venture-title" style="max-width:18ch; margin-bottom:12px;">YC would frame it simply: a startup is built for growth. A normal business usually is not.</h2>
+              <p class="lede" style="max-width:760px; font-size:19px;">Paul Graham's point: the difference is not prestige. It is what the company is designed to do from day one.</p>
+            </div>
+
+            <div class="cards-2" style="grid-template-columns:1fr 1fr; gap:14px; margin-top:0;">
+              <div class="primary-card" style="padding:16px 18px 14px; display:flex; flex-direction:column; gap:10px;">
+                <div class="card-title">Normal business</div>
+                <svg viewBox="0 0 520 180" style="width:100%; height:110px; display:block;">
+                  <line x1="28" y1="150" x2="498" y2="150" stroke="rgba(24,19,16,0.18)" stroke-width="2"/>
+                  <line x1="28" y1="150" x2="28" y2="22" stroke="rgba(24,19,16,0.18)" stroke-width="2"/>
+                  <path d="M38 138 C95 132, 140 126, 184 118 S285 102, 332 92 S420 76, 490 62" fill="none" stroke="#6e665e" stroke-width="5" stroke-linecap="round"/>
+                  <text x="34" y="20" font-size="12" fill="#6c635a" font-family="Manrope, sans-serif" letter-spacing="1.4">GROWTH</text>
+                  <text x="438" y="170" font-size="12" fill="#6c635a" font-family="Manrope, sans-serif" letter-spacing="1.4">TIME</text>
+                </svg>
+                <p>Usually constrained by geography, services, headcount, or a niche market. More predictable. More controllable.</p>
+                <p class="context" style="color:#6c635a; font-size:13px;">Barbershop, agency, restaurant, local service, profitable niche software.</p>
+              </div>
+
+              <div class="primary-card" style="padding:16px 18px 14px; display:flex; flex-direction:column; gap:10px; background:linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,248,245,0.82)); border-color:rgba(159,65,45,0.22);">
+                <div class="card-title">Venture startup</div>
+                <svg viewBox="0 0 520 180" style="width:100%; height:110px; display:block;">
+                  <line x1="28" y1="150" x2="498" y2="150" stroke="rgba(24,19,16,0.18)" stroke-width="2"/>
+                  <line x1="28" y1="150" x2="28" y2="22" stroke="rgba(24,19,16,0.18)" stroke-width="2"/>
+                  <path d="M38 142 C110 142, 170 140, 230 136 S320 122, 365 104 S430 62, 490 18" fill="none" stroke="#9f412d" stroke-width="6" stroke-linecap="round"/>
+                  <circle cx="365" cy="104" r="6" fill="#9f412d"/>
+                  <circle cx="490" cy="18" r="6" fill="#9f412d"/>
+                  <text x="34" y="20" font-size="12" fill="#6c635a" font-family="Manrope, sans-serif" letter-spacing="1.4">GROWTH</text>
+                  <text x="438" y="170" font-size="12" fill="#6c635a" font-family="Manrope, sans-serif" letter-spacing="1.4">TIME</text>
+                </svg>
+                <p>Designed for rapid growth in a very large market. Bigger upside, but much more pressure, competition, and ambiguity.</p>
+                <p class="context" style="color:#6c635a; font-size:13px;">Software, network effects, distribution leverage, venture money, winner-take-most markets.</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="slide-number">07 / 07</div>
         </article>
       </section>
     </div>
@@ -748,16 +793,17 @@
         const slide = wrap.querySelector('.slide');
         if (!slide) return;
         slide.style.transform = 'scale(1)';
-        wrap.style.height = '100%';
+        wrap.style.height = 'auto';
         if (i !== activeIndex) return;
 
         const naturalW = slide.offsetWidth;
         const naturalH = slide.offsetHeight;
         const wrapStyles = getComputedStyle(wrap);
         const wrapPaddingX = parseFloat(wrapStyles.paddingLeft) + parseFloat(wrapStyles.paddingRight);
-        const availableW = Math.max(320, Math.min(viewportW * 0.95, wrap.clientWidth || viewportW) - wrapPaddingX);
+        const availableW = Math.max(320, Math.min(viewportW * 0.985, wrap.clientWidth || viewportW) - wrapPaddingX);
         const scale = Math.min(availableW / naturalW, availableH / naturalH, 1);
         slide.style.transform = `scale(${scale})`;
+        wrap.style.height = `${Math.ceil(naturalH * scale) + 4}px`;
       });
     }
 
@@ -772,7 +818,7 @@
       });
 
       const visualNumber = String(activeIndex + 2).padStart(2, '0');
-      slideCounter.textContent = `${visualNumber} / 06`;
+      slideCounter.textContent = `${visualNumber} / 07`;
       progressBar.style.width = `${((activeIndex + 1) / slideWraps.length) * 100}%`;
       prevBtn.disabled = activeIndex === 0;
       nextBtn.disabled = activeIndex === slideWraps.length - 1;
