@@ -25,13 +25,19 @@
     html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       background: radial-gradient(circle at top, #fcf8f2 0%, var(--bg) 60%, #ece1d2 100%);
       color: var(--ink);
       font-family: var(--sans);
-      scroll-behavior: smooth;
     }
 
-    body { min-height: 100vh; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
     .topbar {
       position: sticky;
@@ -82,22 +88,33 @@
 
     main {
       width: 100%;
-      padding: 28px 0 60px;
+      flex: 1;
+      padding: 18px 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
     }
 
     .deck {
-      display: flex;
-      flex-direction: column;
-      gap: 34px;
-      align-items: center;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
     }
 
     .slide-wrap {
       width: min(95vw, 1400px);
+      height: 100%;
       padding: 8px;
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: flex-start;
+      margin: 0 auto;
+    }
+
+    .slide-wrap.active {
+      display: flex;
     }
 
     .slide {
@@ -362,13 +379,95 @@
       z-index: 2;
     }
 
-    .footer-note {
-      width: min(95vw, 1400px);
-      margin: 0 auto;
-      padding: 0 16px;
+    .topbar-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .topbar-meta .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(24,19,16,0.28);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 24px 18px;
+      border-top: 1px solid rgba(24, 19, 16, 0.08);
+      background: rgba(251, 247, 241, 0.72);
+      backdrop-filter: blur(12px);
+    }
+
+    .controls-left {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .controls-center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .progress-wrap {
+      flex: 1;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(24, 19, 16, 0.10);
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #9f412d, #cf745e);
+      transition: width 180ms ease;
+    }
+
+    .controls-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.82);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
       font-size: 13px;
-      text-align: right;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .nav-btn.primary {
+      background: #201915;
+      color: #fffaf5;
+      border-color: #201915;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
     }
 
     @media (max-width: 1180px) {
@@ -381,15 +480,30 @@
       }
       .photo-card { min-height: 360px; }
       .topbar { position: static; }
+      body { overflow: auto; }
+      main { display: block; padding: 14px 0 14px; }
+      .deck { height: auto; }
+      .slide-wrap,
+      .slide-wrap.active { display: flex; height: auto; }
+      .slide { width: 100%; transform: none !important; }
+      .controls { flex-wrap: wrap; }
     }
 
     @media (max-width: 760px) {
-      .topbar { padding: 12px 14px; }
+      .topbar { padding: 12px 14px; flex-wrap: wrap; }
       .nav { gap: 8px; }
       .nav a { font-size: 11px; padding: 8px 10px; }
       .slide { border-radius: 24px; }
       .slide-wrap { width: min(98vw, 1400px); }
       h1, h2 { max-width: none; }
+      .controls {
+        padding: 10px 14px 16px;
+        gap: 12px;
+      }
+      .controls-left,
+      .topbar-meta { width: 100%; }
+      .controls-center { order: 3; width: 100%; }
+      .controls-right { width: 100%; justify-content: space-between; }
     }
   </style>
 </head>
@@ -397,17 +511,22 @@
   <header class="topbar">
     <div class="brand">Founder Story</div>
     <nav class="nav" aria-label="Slide navigation">
-      <a href="#background">Background</a>
-      <a href="#projects">Projects</a>
-      <a href="#noticing">What I kept noticing</a>
-      <a href="#shaped">What shaped me</a>
-      <a href="#founder-mode">Founder mode</a>
+      <a href="#background" data-slide="0">Background</a>
+      <a href="#projects" data-slide="1">Projects</a>
+      <a href="#noticing" data-slide="2">What I kept noticing</a>
+      <a href="#shaped" data-slide="3">What shaped me</a>
+      <a href="#founder-mode" data-slide="4">Founder mode</a>
     </nav>
+    <div class="topbar-meta">
+      <span>Founder deck</span>
+      <span class="dot"></span>
+      <span id="slideCounter">02 / 06</span>
+    </div>
   </header>
 
   <main>
     <div class="deck">
-      <section class="slide-wrap" id="background">
+      <section class="slide-wrap active" id="background">
         <article class="slide" aria-labelledby="background-title">
           <div class="cover"></div>
           <div class="grid-2">
@@ -596,44 +715,112 @@
     </div>
   </main>
 
-  <footer class="footer-note">
-    Aram Shakhbandaryan · Founder story deck
+  <footer class="controls">
+    <div class="controls-left">Aram Shakhbandaryan · founder story deck</div>
+    <div class="controls-center">
+      <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+    <div class="controls-right">
+      <button class="nav-btn" id="prevBtn" aria-label="Previous slide">← Prev</button>
+      <button class="nav-btn primary" id="nextBtn" aria-label="Next slide">Next →</button>
+    </div>
   </footer>
 
   <script>
-    function fitSlidesToViewport() {
+    const slideWraps = Array.from(document.querySelectorAll('.slide-wrap'));
+    const navLinks = Array.from(document.querySelectorAll('.nav a[data-slide]'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideCounter = document.getElementById('slideCounter');
+    const progressBar = document.getElementById('progressBar');
+    let activeIndex = 0;
+
+    function fitActiveSlide() {
+      if (window.innerWidth <= 1180) return;
       const topbar = document.querySelector('.topbar');
-      const footer = document.querySelector('.footer-note');
+      const controls = document.querySelector('.controls');
       const topbarH = topbar ? topbar.getBoundingClientRect().height : 0;
-      const footerH = footer ? footer.getBoundingClientRect().height : 0;
+      const controlsH = controls ? controls.getBoundingClientRect().height : 0;
       const viewportH = window.innerHeight;
       const viewportW = window.innerWidth;
-      const availableH = Math.max(320, viewportH - topbarH - footerH - 44);
+      const availableH = Math.max(320, viewportH - topbarH - controlsH - 28);
 
-      document.querySelectorAll('.slide-wrap').forEach((wrap) => {
+      slideWraps.forEach((wrap, i) => {
         const slide = wrap.querySelector('.slide');
         if (!slide) return;
-
         slide.style.transform = 'scale(1)';
-        wrap.style.height = 'auto';
+        wrap.style.height = '100%';
+        if (i !== activeIndex) return;
 
         const naturalW = slide.offsetWidth;
         const naturalH = slide.offsetHeight;
         const wrapStyles = getComputedStyle(wrap);
         const wrapPaddingX = parseFloat(wrapStyles.paddingLeft) + parseFloat(wrapStyles.paddingRight);
         const availableW = Math.max(320, Math.min(viewportW * 0.95, wrap.clientWidth || viewportW) - wrapPaddingX);
-
         const scale = Math.min(availableW / naturalW, availableH / naturalH, 1);
         slide.style.transform = `scale(${scale})`;
-        wrap.style.height = `${Math.ceil(naturalH * scale) + 8}px`;
       });
     }
 
-    window.addEventListener('load', fitSlidesToViewport);
-    window.addEventListener('resize', fitSlidesToViewport);
-    window.addEventListener('orientationchange', fitSlidesToViewport);
+    function setActiveSlide(index, pushHash = true) {
+      activeIndex = Math.max(0, Math.min(index, slideWraps.length - 1));
+      slideWraps.forEach((wrap, i) => wrap.classList.toggle('active', i === activeIndex));
+      navLinks.forEach((link, i) => {
+        link.setAttribute('aria-current', i === activeIndex ? 'page' : 'false');
+        link.style.background = i === activeIndex ? '#201915' : 'rgba(255,255,255,0.65)';
+        link.style.color = i === activeIndex ? '#fffaf5' : 'var(--ink)';
+        link.style.borderColor = i === activeIndex ? '#201915' : 'var(--line)';
+      });
+
+      const visualNumber = String(activeIndex + 2).padStart(2, '0');
+      slideCounter.textContent = `${visualNumber} / 06`;
+      progressBar.style.width = `${((activeIndex + 1) / slideWraps.length) * 100}%`;
+      prevBtn.disabled = activeIndex === 0;
+      nextBtn.disabled = activeIndex === slideWraps.length - 1;
+
+      if (pushHash) {
+        const targetId = slideWraps[activeIndex].id;
+        history.replaceState(null, '', `#${targetId}`);
+      }
+
+      requestAnimationFrame(fitActiveSlide);
+    }
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 1180) return;
+        e.preventDefault();
+        setActiveSlide(Number(link.dataset.slide), true);
+      });
+    });
+
+    prevBtn.addEventListener('click', () => setActiveSlide(activeIndex - 1, true));
+    nextBtn.addEventListener('click', () => setActiveSlide(activeIndex + 1, true));
+
+    window.addEventListener('keydown', (e) => {
+      if (window.innerWidth <= 1180) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        setActiveSlide(activeIndex + 1, true);
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        setActiveSlide(activeIndex - 1, true);
+      }
+    });
+
+    function initSlider() {
+      const currentHash = window.location.hash.replace('#', '');
+      const foundIndex = slideWraps.findIndex((wrap) => wrap.id === currentHash);
+      setActiveSlide(foundIndex >= 0 ? foundIndex : 0, false);
+    }
+
+    window.addEventListener('resize', fitActiveSlide);
+    window.addEventListener('orientationchange', fitActiveSlide);
+    window.addEventListener('hashchange', initSlider);
+    window.addEventListener('load', initSlider);
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(fitSlidesToViewport);
+      document.fonts.ready.then(initSlider);
     }
   </script>
 </body>
