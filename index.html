@@ -104,9 +104,9 @@
     }
 
     .slide-wrap {
-      width: min(95vw, 1400px);
+      width: min(98.8vw, 1680px);
       height: 100%;
-      padding: 8px;
+      padding: 6px;
       display: none;
       justify-content: center;
       align-items: flex-start;
@@ -120,13 +120,13 @@
     .slide {
       position: relative;
       overflow: hidden;
-      width: 1200px;
-      min-height: 730px;
+      width: 1420px;
+      aspect-ratio: 16 / 9;
       border-radius: 34px;
       border: 1px solid rgba(24, 19, 16, 0.10);
       background: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.52)), var(--paper);
       box-shadow: var(--shadow);
-      padding: 44px 46px 40px;
+      padding: 42px 42px 38px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -563,36 +563,35 @@
       <section class="slide-wrap" id="projects">
         <article class="slide" aria-labelledby="projects-title">
           <div class="cover"></div>
-          <div class="grid-2">
-            <div class="left-col">
+          <div class="grid-2" style="grid-template-columns:0.9fr 1.1fr; gap:24px;">
+            <div class="left-col" style="justify-content:flex-start; gap:18px;">
               <div>
                 <div class="eyebrow">Projects</div>
-                <h2 id="projects-title" style="max-width:8.4ch;">Past projects taught me how work breaks. Decato is where that learning compounds.</h2>
-                <p class="lede" style="max-width:650px;">I did not come to Decato from one clean founder arc. I came through sales, product, communication tooling, and repeated attempts to turn messy work into something usable.</p>
-
-                <div class="cards-2" style="margin-top:20px;">
-                  <div class="card">
-                    <div class="card-title">Past projects</div>
-                    <p><strong>Empy.ai</strong> explored real-time intelligence for high-stakes calls. Earlier work across growth, product, and operations kept exposing the same thing: people lose time in unclear, manual, fragmented workflows.</p>
-                  </div>
-                  <div class="card">
-                    <div class="card-title">Current project — Decato.ai</div>
-                    <p>Decato turns a plan, brief, budget, and references into a furnished layout, real furniture bundle, render, and client-ready deck — compressing weeks of interior workflow into a much tighter client-feedback loop.</p>
-                  </div>
-                </div>
+                <h2 id="projects-title" style="max-width:11.6ch;">Past projects taught me how work breaks. Decato is where that learning compounds.</h2>
+                <p class="lede" style="max-width:560px;">I came through sales, product, communication tooling, and repeated attempts to turn messy work into something usable.</p>
               </div>
 
-              <p class="takeaway">The throughline is simple: find expensive manual work, compress the loop, and keep the human taste where it matters.</p>
+              <div class="card" style="background:linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.70));">
+                <div class="card-title">The throughline</div>
+                <p>Find expensive manual work, compress the loop, and keep human taste where it matters.</p>
+              </div>
+
             </div>
 
-            <div class="right-col" style="gap:12px;">
-              <figure class="photo-card" style="min-height:330px;">
+            <div class="right-col" style="gap:12px; justify-content:flex-start;">
+              <figure class="photo-card" style="min-height:320px; max-height:320px;">
                 <img src="assets/decato-render.png" alt="Decato interior render" style="object-position:center center;" />
                 <figcaption class="image-note">Decato / real furniture / fit-aware render</figcaption>
               </figure>
-              <div class="card" style="background:rgba(255,255,255,0.78);">
-                <div class="card-title">Why Decato matters</div>
-                <p>Interior studios still redraw plans, gather references, source furniture, check fit, render, and assemble the deck by hand. Decato is trying to turn that into one coherent system.</p>
+              <div class="cards-2" style="grid-template-columns:1fr 1fr; margin-top:0; gap:12px;">
+                <div class="card">
+                  <div class="card-title">Past projects</div>
+                  <p><strong>Empy.ai</strong> explored real-time intelligence for high-stakes calls and kept pointing to the same problem: manual, fragmented workflows break good work.</p>
+                </div>
+                <div class="card">
+                  <div class="card-title">Current — Decato.ai</div>
+                  <p>Decato turns a plan, brief, budget, and references into a furnished layout, real furniture bundle, render, and client-ready deck.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -644,7 +643,7 @@
             <div class="left-col">
               <div>
                 <div class="eyebrow">What Shaped Me</div>
-                <h2 id="shaped-title">Before business, games taught me how systems really work.</h2>
+                <h2 id="shaped-title" style="max-width:11.4ch;">Before business, games taught me how systems really work.</h2>
                 <div class="lesson-list">
                   <div class="lesson">
                     <div class="lesson-title">01 — Incentives drive behavior</div>
@@ -681,7 +680,7 @@
             <div class="left-col">
               <div>
                 <div class="eyebrow">Founder Mode</div>
-                <h2 id="mode-title" style="max-width:8ch;">Founder mode started before I had permission.</h2>
+                <h2 id="mode-title" style="max-width:9.6ch;">Founder mode started before I had permission.</h2>
                 <div class="side-note">Before status or polish — just the need to build something real.</div>
                 <div class="split-bottom">
                   <div class="primary-card">
