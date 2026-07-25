@@ -95,11 +95,15 @@
     .slide-wrap {
       width: min(95vw, 1400px);
       padding: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
 
     .slide {
       position: relative;
       overflow: hidden;
+      width: 1200px;
       min-height: 730px;
       border-radius: 34px;
       border: 1px solid rgba(24, 19, 16, 0.10);
@@ -109,6 +113,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transform-origin: top center;
+      will-change: transform;
     }
 
     .cover {
@@ -593,5 +599,42 @@
   <footer class="footer-note">
     Aram Shakhbandaryan · Founder story deck
   </footer>
+
+  <script>
+    function fitSlidesToViewport() {
+      const topbar = document.querySelector('.topbar');
+      const footer = document.querySelector('.footer-note');
+      const topbarH = topbar ? topbar.getBoundingClientRect().height : 0;
+      const footerH = footer ? footer.getBoundingClientRect().height : 0;
+      const viewportH = window.innerHeight;
+      const viewportW = window.innerWidth;
+      const availableH = Math.max(320, viewportH - topbarH - footerH - 44);
+
+      document.querySelectorAll('.slide-wrap').forEach((wrap) => {
+        const slide = wrap.querySelector('.slide');
+        if (!slide) return;
+
+        slide.style.transform = 'scale(1)';
+        wrap.style.height = 'auto';
+
+        const naturalW = slide.offsetWidth;
+        const naturalH = slide.offsetHeight;
+        const wrapStyles = getComputedStyle(wrap);
+        const wrapPaddingX = parseFloat(wrapStyles.paddingLeft) + parseFloat(wrapStyles.paddingRight);
+        const availableW = Math.max(320, Math.min(viewportW * 0.95, wrap.clientWidth || viewportW) - wrapPaddingX);
+
+        const scale = Math.min(availableW / naturalW, availableH / naturalH, 1);
+        slide.style.transform = `scale(${scale})`;
+        wrap.style.height = `${Math.ceil(naturalH * scale) + 8}px`;
+      });
+    }
+
+    window.addEventListener('load', fitSlidesToViewport);
+    window.addEventListener('resize', fitSlidesToViewport);
+    window.addEventListener('orientationchange', fitSlidesToViewport);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(fitSlidesToViewport);
+    }
+  </script>
 </body>
 </html>
